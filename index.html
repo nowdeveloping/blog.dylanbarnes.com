@@ -253,10 +253,13 @@
 </div>
 
 <script>
-  const API = 'https://nowdeveloping.photos/wp-json/wp/v2';
+  // Use RSS feed via rss2json proxy — no CORS issues
+  const RSS_URL = encodeURIComponent('https://nowdeveloping.photos/feed');
+  const API = `https://api.rss2json.com/v1/api.json?rss_url=${RSS_URL}&api_key=&count=100`;
+
   const PER_PAGE = 8;
   let currentPage = 1;
-  let totalPages = 1;
+  let allPosts = [];
 
   function formatDate(dateStr) {
     const d = new Date(dateStr);
@@ -267,59 +270,68 @@
     }).toLowerCase();
   }
 
-  async function fetchPosts(page = 1) {
+  function extractFirstImage(content) {
+    const match = content.match(/<img[^>]+src="([^">]+)"/);
+    return match ? match[1] : null;
+  }
+
+  function renderPage(page) {
+    const container = document.getElementById('posts');
+    const start = (page - 1) * PER_PAGE;
+    const end = start + PER_PAGE;
+    const pagePosts = allPosts.slice(start, end);
+
+    if (!pagePosts.length) {
+      container.innerHTML = '<p class="loading">no posts found.</p>';
+      return;
+    }
+
+    container.innerHTML = '';
+
+    pagePosts.forEach((post, i) => {
+      // try thumbnail first, then extract from content
+      let imgHTML = '';
+      const thumb = post.thumbnail && !post.thumbnail.includes('s0.wp.com') ? post.thumbnail : null;
+      const extracted = extractFirstImage(post.content);
+      const imgSrc = thumb || extracted;
+
+      if (imgSrc) {
+        imgHTML = `
+          <a class="post-thumb" href="${post.link}" target="_blank">
+            <img src="${imgSrc}" alt="${post.title}" loading="lazy">
+          </a>`;
+      }
+
+      const card = document.createElement('article');
+      card.className = 'post-card';
+      card.style.animationDelay = `${i * 0.05}s`;
+      card.innerHTML = `
+        ${imgHTML}
+        <a class="post-title" href="${post.link}" target="_blank">${post.title}</a>
+        <span class="post-date">${formatDate(post.pubDate)}</span>
+      `;
+
+      container.appendChild(card);
+    });
+
+    updatePagination();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function loadAllPosts() {
     const container = document.getElementById('posts');
     container.innerHTML = '<p class="loading">loading...</p>';
 
     try {
-      const res = await fetch(
-        `${API}/posts?per_page=${PER_PAGE}&page=${page}&_embed`
-      );
+      const res = await fetch(API);
+      const data = await res.json();
 
-      // get total pages from headers
-      totalPages = parseInt(res.headers.get('X-WP-TotalPages')) || 1;
-
-      const posts = await res.json();
-
-      if (!posts.length) {
-        container.innerHTML = '<p class="loading">no posts found.</p>';
-        return;
+      if (data.status !== 'ok' || !data.items.length) {
+        throw new Error('Feed error');
       }
 
-      container.innerHTML = '';
-
-      posts.forEach((post, i) => {
-        // get featured image if available
-        let imgHTML = '';
-        try {
-          const media = post._embedded['wp:featuredmedia'];
-          if (media && media[0] && media[0].source_url) {
-            const src = media[0].source_url;
-            const alt = media[0].alt_text || post.title.rendered;
-            imgHTML = `
-              <a class="post-thumb" href="${post.link}" target="_blank">
-                <img src="${src}" alt="${alt}" loading="lazy">
-              </a>`;
-          }
-        } catch(e) {}
-
-        const title = post.title.rendered;
-        const date = formatDate(post.date);
-        const url = post.link;
-
-        const card = document.createElement('article');
-        card.className = 'post-card';
-        card.style.animationDelay = `${i * 0.05}s`;
-        card.innerHTML = `
-          ${imgHTML}
-          <a class="post-title" href="${url}" target="_blank">${title}</a>
-          <span class="post-date">${date}</span>
-        `;
-
-        container.appendChild(card);
-      });
-
-      updatePagination();
+      allPosts = data.items;
+      renderPage(currentPage);
 
     } catch(err) {
       container.innerHTML = `<p class="loading">couldn't load posts. <a href="https://nowdeveloping.photos">visit the blog directly</a>.</p>`;
@@ -329,17 +341,16 @@
 
   function changePage(dir) {
     currentPage += dir;
-    fetchPosts(currentPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    renderPage(currentPage);
   }
 
   function updatePagination() {
+    const totalPages = Math.ceil(allPosts.length / PER_PAGE);
     document.getElementById('prev-btn').disabled = currentPage <= 1;
     document.getElementById('next-btn').disabled = currentPage >= totalPages;
   }
 
-  // init
-  fetchPosts(currentPage);
+  loadAllPosts();
 </script>
 
 </body>
