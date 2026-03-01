@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dylan barnes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f0ece4;
+    --text: #1c1916;
+    --muted: #9c9184;
+    --border: #d4cdc3;
+    --ink: #2e2820;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; height: auto; }
+
+  /* ── LAYOUT ── */
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    padding: 48px 0 0;
+  }
+
+  .site-branding {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .site-title {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+
+  .site-title a {
+    color: var(--ink);
+  }
+
+  .site-description {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+    font-weight: 300;
+  }
+
+  .site-description a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    margin-top: 12px;
+    display: flex;
+    gap: 24px;
+  }
+
+  .site-nav a {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    transition: color 0.15s;
+  }
+
+  .site-nav a:hover { color: var(--ink); }
+
+  /* ── POSTS ── */
+  .posts {
+    margin-top: 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  /* ── POST CARD ── */
+  .post-card {}
+
+  .post-thumb {
+    display: block;
+    width: 100%;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+
+  .post-thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.2s ease;
+  }
+
+  .post-thumb:hover img { opacity: 0.88; }
+
+  /* posts without images get a subtle placeholder */
+  .post-thumb.no-image {
+    display: none;
+  }
+
+  .post-title {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin-bottom: 5px;
+    display: block;
+    transition: color 0.15s;
+  }
+
+  .post-title:hover { color: var(--muted); }
+
+  .post-date {
+    font-size: 0.63rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── LOADING STATE ── */
+  .loading {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    padding: 52px 0;
+  }
+
+  /* ── PAGINATION ── */
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin: 20px 0 60px;
+  }
+
+  .pagination button {
+    background: none;
+    border: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s;
+  }
+
+  .pagination button:hover { color: var(--ink); }
+  .pagination button:disabled { opacity: 0.3; cursor: default; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 0 52px;
+    font-size: 0.63rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 18px;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ── FADE IN ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-card {
+    animation: fadeIn 0.4s ease both;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="site-branding">
+      <div class="site-title"><a href="/">dylan barnes</a></div>
+      <div class="site-description">
+        the junk drawer of <a href="https://www.dylanbarnes.com" target="_blank">www.dylanbarnes.com</a>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="https://www.dylanbarnes.com" target="_blank">portfolio</a>
+      <a href="https://nowdeveloping.photos/category/travel/">travel</a>
+      <a href="https://nowdeveloping.photos/category/photo-journal/">journal</a>
+      <a href="https://nowdeveloping.photos/about/">about</a>
+    </nav>
+  </header>
+
+  <!-- POSTS -->
+  <main>
+    <div class="posts" id="posts">
+      <p class="loading">loading...</p>
+    </div>
+
+    <div class="pagination">
+      <button id="prev-btn" disabled onclick="changePage(-1)">← newer</button>
+      <button id="next-btn" onclick="changePage(1)">older →</button>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span>dylan barnes</span>
+    <div class="footer-links">
+      <a href="https://www.dylanbarnes.com" target="_blank">portfolio</a>
+      <a href="https://www.instagram.com" target="_blank">instagram</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const API = 'https://nowdeveloping.photos/wp-json/wp/v2';
+  const PER_PAGE = 8;
+  let currentPage = 1;
+  let totalPages = 1;
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).toLowerCase();
+  }
+
+  async function fetchPosts(page = 1) {
+    const container = document.getElementById('posts');
+    container.innerHTML = '<p class="loading">loading...</p>';
+
+    try {
+      const res = await fetch(
+        `${API}/posts?per_page=${PER_PAGE}&page=${page}&_embed`
+      );
+
+      // get total pages from headers
+      totalPages = parseInt(res.headers.get('X-WP-TotalPages')) || 1;
+
+      const posts = await res.json();
+
+      if (!posts.length) {
+        container.innerHTML = '<p class="loading">no posts found.</p>';
+        return;
+      }
+
+      container.innerHTML = '';
+
+      posts.forEach((post, i) => {
+        // get featured image if available
+        let imgHTML = '';
+        try {
+          const media = post._embedded['wp:featuredmedia'];
+          if (media && media[0] && media[0].source_url) {
+            const src = media[0].source_url;
+            const alt = media[0].alt_text || post.title.rendered;
+            imgHTML = `
+              <a class="post-thumb" href="${post.link}" target="_blank">
+                <img src="${src}" alt="${alt}" loading="lazy">
+              </a>`;
+          }
+        } catch(e) {}
+
+        const title = post.title.rendered;
+        const date = formatDate(post.date);
+        const url = post.link;
+
+        const card = document.createElement('article');
+        card.className = 'post-card';
+        card.style.animationDelay = `${i * 0.05}s`;
+        card.innerHTML = `
+          ${imgHTML}
+          <a class="post-title" href="${url}" target="_blank">${title}</a>
+          <span class="post-date">${date}</span>
+        `;
+
+        container.appendChild(card);
+      });
+
+      updatePagination();
+
+    } catch(err) {
+      container.innerHTML = `<p class="loading">couldn't load posts. <a href="https://nowdeveloping.photos">visit the blog directly</a>.</p>`;
+      console.error(err);
+    }
+  }
+
+  function changePage(dir) {
+    currentPage += dir;
+    fetchPosts(currentPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updatePagination() {
+    document.getElementById('prev-btn').disabled = currentPage <= 1;
+    document.getElementById('next-btn').disabled = currentPage >= totalPages;
+  }
+
+  // init
+  fetchPosts(currentPage);
+</script>
+
+</body>
+</html>
