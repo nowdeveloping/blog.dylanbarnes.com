@@ -9,181 +9,46 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #f0ece4;
-    --text: #1c1916;
-    --muted: #9c9184;
-    --border: #d4cdc3;
-    --ink: #2e2820;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 300;
-    line-height: 1.6;
-  }
-
-  a { color: inherit; text-decoration: none; }
-  img { display: block; max-width: 100%; height: auto; }
-
-  .wrap {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-
-  /* ── HEADER ── */
-  .site-header { padding: 48px 0 0; }
-
-  .site-branding {
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .site-title {
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-  }
-
-  .site-title a { color: var(--ink); }
-
-  .site-description {
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-top: 8px;
-    font-weight: 300;
-  }
-
-  .site-description a {
-    color: var(--muted);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .site-nav {
-    margin-top: 12px;
-    display: flex;
-    gap: 24px;
-  }
-
-  .site-nav a {
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    transition: color 0.15s;
-  }
-
-  .site-nav a:hover { color: var(--ink); }
-
-  /* ── POSTS ── */
-  .posts {
-    margin-top: 52px;
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-  }
-
-  .post-card { display: none; }
-  .post-card.visible { display: block; animation: fadeIn 0.4s ease both; }
-
-  .post-thumb {
-    display: block;
-    width: 100%;
-    margin-bottom: 14px;
-    overflow: hidden;
-  }
-
-  .post-thumb img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: opacity 0.2s ease;
-  }
-
-  .post-thumb:hover img { opacity: 0.88; }
-
-  .post-title {
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: var(--ink);
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-    margin-bottom: 5px;
-    display: block;
-    transition: color 0.15s;
-  }
-
-  .post-title:hover { color: var(--muted); }
-
-  .post-date {
-    font-size: 0.63rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
-
-  /* ── PAGINATION ── */
-  .pagination {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin: 20px 0 60px;
-  }
-
-  .pagination button {
-    background: none;
-    border: none;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.15s;
-  }
-
-  .pagination button:hover { color: var(--ink); }
-  .pagination button:disabled { opacity: 0.3; cursor: default; }
-
-  /* ── FOOTER ── */
-  .site-footer {
-    border-top: 1px solid var(--border);
-    padding: 20px 0 52px;
-    font-size: 0.63rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
-  }
-
-  .footer-links { display: flex; gap: 18px; }
-  .footer-links a { color: var(--muted); transition: color 0.15s; }
-  .footer-links a:hover { color: var(--ink); }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  :root { --bg:#f0ece4; --text:#1c1916; --muted:#9c9184; --border:#d4cdc3; --ink:#2e2820; }
+  body { background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace; font-weight:300; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { display:block; max-width:100%; height:auto; }
+  .wrap { max-width:680px; margin:0 auto; padding:0 28px; }
+  .site-header { padding:48px 0 0; }
+  .site-branding { padding-bottom:16px; border-bottom:1px solid var(--border); }
+  .site-title { font-size:1rem; font-weight:400; letter-spacing:0.08em; color:var(--ink); }
+  .site-title a { color:var(--ink); }
+  .site-description { font-size:0.65rem; color:var(--muted); letter-spacing:0.1em; margin-top:8px; }
+  .site-description a { color:var(--muted); text-decoration:underline; text-underline-offset:3px; }
+  .site-nav { margin-top:12px; display:flex; gap:24px; }
+  .site-nav a { font-size:0.68rem; color:var(--muted); letter-spacing:0.08em; transition:color 0.15s; }
+  .site-nav a:hover { color:var(--ink); }
+  .posts { margin-top:52px; display:flex; flex-direction:column; gap:64px; }
+  .post-card { display:none; }
+  .post-card.visible { display:block; animation:fadeIn 0.4s ease both; }
+  .post-thumb { display:block; width:100%; margin-bottom:14px; overflow:hidden; }
+  .post-thumb img { width:100%; height:auto; display:block; transition:opacity 0.2s ease; }
+  .post-thumb:hover img { opacity:0.88; }
+  .post-title { font-size:0.82rem; font-weight:400; color:var(--ink); letter-spacing:0.02em; line-height:1.5; margin-bottom:5px; display:block; transition:color 0.15s; }
+  .post-title:hover { color:var(--muted); }
+  .post-date { font-size:0.63rem; color:var(--muted); letter-spacing:0.06em; }
+  .pagination { display:flex; justify-content:space-between; font-size:0.65rem; color:var(--muted); letter-spacing:0.1em; margin:20px 0 60px; }
+  .pagination button { background:none; border:none; font-family:'IBM Plex Mono',monospace; font-size:0.65rem; color:var(--muted); letter-spacing:0.1em; cursor:pointer; padding:0; transition:color 0.15s; }
+  .pagination button:hover { color:var(--ink); }
+  .pagination button:disabled { opacity:0.3; cursor:default; }
+  .site-footer { border-top:1px solid var(--border); padding:20px 0 52px; font-size:0.63rem; color:var(--muted); letter-spacing:0.08em; display:flex; justify-content:space-between; align-items:center; margin-top:40px; }
+  .footer-links { display:flex; gap:18px; }
+  .footer-links a { color:var(--muted); transition:color 0.15s; }
+  .footer-links a:hover { color:var(--ink); }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 </style>
 </head>
 <body>
 <div class="wrap">
-
   <header class="site-header">
     <div class="site-branding">
       <div class="site-title"><a href="/">dylan barnes</a></div>
-      <div class="site-description">
-        the junk drawer of <a href="https://www.dylanbarnes.com" target="_blank">www.dylanbarnes.com</a>
-      </div>
+      <div class="site-description">the junk drawer of <a href="https://www.dylanbarnes.com" target="_blank">www.dylanbarnes.com</a></div>
     </div>
     <nav class="site-nav">
       <a href="https://www.dylanbarnes.com" target="_blank">portfolio</a>
@@ -192,78 +57,73 @@
       <a href="https://nowdeveloping.photos/about/">about</a>
     </nav>
   </header>
-
   <main>
     <div class="posts" id="posts">
 
       <!-- PAGE 1 -->
       <article class="post-card" data-page="1">
-        <a class="post-thumb" href="https://nowdeveloping.photos/2025/11/29/20251129-knucklepuck-buzzfront-yokohama/" target="_blank">
-          <img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/6415_37.jpg" alt="knucklepuck @ buzzfront yokohama" loading="lazy">
-        </a>
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/11/29/20251129-knucklepuck-buzzfront-yokohama/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/6415_37.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/11/29/20251129-knucklepuck-buzzfront-yokohama/" target="_blank">knucklepuck @ buzzfront yokohama</a>
         <span class="post-date">november 29, 2025</span>
       </article>
 
       <article class="post-card" data-page="1">
-        <a class="post-thumb" href="https://nowdeveloping.photos/2025/11/28/yokohama-japan/" target="_blank">
-          <img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/l1000670-2.jpg" alt="yokohama, japan" loading="lazy">
-        </a>
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/11/28/yokohama-japan/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/l1000670-2.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/11/28/yokohama-japan/" target="_blank">yokohama, japan</a>
         <span class="post-date">november 28, 2025</span>
       </article>
 
       <article class="post-card" data-page="1">
-        <a class="post-thumb" href="https://nowdeveloping.photos/2025/09/07/anxious-acb-hall-tokyo/" target="_blank">
-          <img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/l1000099-2.jpg" alt="anxious @ acb hall tokyo" loading="lazy">
-        </a>
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/09/07/anxious-acb-hall-tokyo/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/l1000099-2.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/09/07/anxious-acb-hall-tokyo/" target="_blank">anxious @ acb hall tokyo</a>
         <span class="post-date">september 7, 2025</span>
       </article>
 
       <article class="post-card" data-page="1">
-        <a class="post-thumb" href="https://nowdeveloping.photos/2025/07/11/a-little-late-and-the-flower-blooms-a-little-late-and-the-sky-paints-maroon-a-little-late-and-summer-turns-to-autumn/" target="_blank">
-          <img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/kakaotalk_image_2025-07-22-23-56-46_006.jpeg" alt="a little late and the flower blooms." loading="lazy">
-        </a>
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/07/11/a-little-late-and-the-flower-blooms-a-little-late-and-the-sky-paints-maroon-a-little-late-and-summer-turns-to-autumn/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2026/01/kakaotalk_image_2025-07-22-23-56-46_006.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/07/11/a-little-late-and-the-flower-blooms-a-little-late-and-the-sky-paints-maroon-a-little-late-and-summer-turns-to-autumn/" target="_blank">a little late and the flower blooms. a little late and the sky paints maroon. a little late and summer turns to autumn.</a>
         <span class="post-date">july 11, 2025</span>
       </article>
 
       <article class="post-card" data-page="1">
-        <a class="post-thumb" href="https://nowdeveloping.photos/2025/07/07/%d1%83%d0%bb%d0%b0%d0%b0%d0%bd%d0%b1%d0%b0%d0%b0%d1%82%d0%b0%d1%80-%d0%bc%d0%be%d0%bd%d0%b3%d0%be%d0%bb-%d1%83%d0%bb%d1%81/" target="_blank">
-          <img src="https://nowdeveloping.photos/wp-content/uploads/2025/07/2073_12.jpg" alt="улаанбаатар монгол улс" loading="lazy">
-        </a>
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/07/07/%d1%83%d0%bb%d0%b0%d0%b0%d0%bd%d0%b1%d0%b0%d0%b0%d1%82%d0%b0%d1%80-%d0%bc%d0%be%d0%bd%d0%b3%d0%be%d0%bb-%d1%83%d0%bb%d1%81/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2025/07/2073_12.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/07/07/%d1%83%d0%bb%d0%b0%d0%b0%d0%bd%d0%b1%d0%b0%d0%b0%d1%82%d0%b0%d1%80-%d0%bc%d0%be%d0%bd%d0%b3%d0%be%d0%bb-%d1%83%d0%bb%d1%81/" target="_blank">улаанбаатар монгол улс</a>
         <span class="post-date">july 7, 2025</span>
       </article>
 
       <article class="post-card" data-page="1">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/07/06/%d0%be%d1%80%d1%85%d0%be%d0%bd-%d0%bc%d0%be%d0%bd%d0%b3%d0%be%d0%bb-%d1%83%d0%bb%d1%81/" target="_blank"><img src="https://i.imgur.com/f1YO5fc.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/07/06/%d0%be%d1%80%d1%85%d0%be%d0%bd-%d0%bc%d0%be%d0%bd%d0%b3%d0%be%d0%bb-%d1%83%d0%bb%d1%81/" target="_blank">орхон монгол улс</a>
         <span class="post-date">july 6, 2025</span>
       </article>
 
       <article class="post-card" data-page="1">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/07/04/%d1%82%d2%af%d0%bd%d1%85%d1%8d%d0%bb-%d0%bc%d0%be%d0%bd%d0%b3%d0%be%d0%bb-%d1%83%d0%bb%d1%81/" target="_blank"><img src="https://i.imgur.com/IniVXat.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/07/04/%d1%82%d2%af%d0%bd%d1%85%d1%8d%d0%bb-%d0%bc%d0%be%d0%bd%d0%b3%d0%be%d0%bb-%d1%83%d0%bb%d1%81/" target="_blank">түнхэл монгол улс</a>
         <span class="post-date">july 4, 2025</span>
       </article>
 
       <article class="post-card" data-page="1">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/06/01/20250601-ilgyne-erotic-worms-exhibition-yajasu-gyojung-ovantgarde/" target="_blank"><img src="https://i.imgur.com/zPK0Vdr.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/06/01/20250601-ilgyne-erotic-worms-exhibition-yajasu-gyojung-ovantgarde/" target="_blank">ilgyne, erotic worms exhibition, yajasu, gyojung @ ovantgarde</a>
         <span class="post-date">june 1, 2025</span>
       </article>
 
       <!-- PAGE 2 -->
       <article class="post-card" data-page="2">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/05/30/20250530-say-sue-me-time-is-not-yours-ep-release-show-ovantgarde/" target="_blank"><img src="https://i.imgur.com/Rq2iW3f.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/05/30/20250530-say-sue-me-time-is-not-yours-ep-release-show-ovantgarde/" target="_blank">say sue me "time is not yours" ep release show @ ovantgarde</a>
         <span class="post-date">may 30, 2025</span>
       </article>
 
       <article class="post-card" data-page="2">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/05/11/building-narrative-through-process-a-reflection-on-manabu/" target="_blank"><img src="https://i.imgur.com/eZ1cC3l.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/05/11/building-narrative-through-process-a-reflection-on-manabu/" target="_blank">building narrative through process: a reflection on manabu</a>
         <span class="post-date">may 11, 2025</span>
       </article>
 
       <article class="post-card" data-page="2">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/04/30/i-stood-alone-in-the-darkness-light-does-not-illuminate-it-only-looks-for-things-to-illuminate-and-i-had-never-been-found-by-the-light-i-would-always-be-in-darkness/" target="_blank"><img src="https://i.imgur.com/6Nk4BW9.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/04/30/i-stood-alone-in-the-darkness-light-does-not-illuminate-it-only-looks-for-things-to-illuminate-and-i-had-never-been-found-by-the-light-i-would-always-be-in-darkness/" target="_blank">i stood alone in the darkness. light does not illuminate. it only looks for things to illuminate. and i had never been found by the light. i would always be in darkness</a>
         <span class="post-date">april 30, 2025</span>
       </article>
@@ -274,68 +134,81 @@
       </article>
 
       <article class="post-card" data-page="2">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/04/07/20250407-say-sue-me-ovantgarde/" target="_blank"><img src="https://i.imgur.com/70H1GCH.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/04/07/20250407-say-sue-me-ovantgarde/" target="_blank">say sue me @ ovantgarde</a>
         <span class="post-date">april 7, 2025</span>
       </article>
 
       <article class="post-card" data-page="2">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2025/03/03/manabu/" target="_blank"><img src="https://i.imgur.com/fLLP3Tu.jpeg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2025/03/03/manabu/" target="_blank">manabu</a>
         <span class="post-date">march 3, 2025</span>
       </article>
 
       <article class="post-card" data-page="2">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2024/04/09/jangsan-%ec%9e%a5%ec%82%b0/" target="_blank"><img src="https://i.imgur.com/q80HhR4.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2024/04/09/jangsan-%ec%9e%a5%ec%82%b0/" target="_blank">jangsan || 장산</a>
         <span class="post-date">april 9, 2024</span>
       </article>
 
       <article class="post-card" data-page="2">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2024/04/06/%eb%b2%9a%ea%bd%83-%eb%8c%80%ec%9a%b0%ec%95%84%ed%8c%8c%ed%8a%b8/" target="_blank"><img src="https://i.imgur.com/GzAimGK.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2024/04/06/%eb%b2%9a%ea%bd%83-%eb%8c%80%ec%9a%b0%ec%95%84%ed%8c%8c%ed%8a%b8/" target="_blank">cherry blossoms at daewoo apartments || 벚꽃 대우아파트</a>
         <span class="post-date">april 6, 2024</span>
       </article>
 
       <!-- PAGE 3 -->
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2023/07/25/osaka-japan/" target="_blank"><img src="https://i.imgur.com/EJaLPIU.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2023/07/25/osaka-japan/" target="_blank">osaka, japan</a>
         <span class="post-date">july 25, 2023</span>
       </article>
 
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2023/07/24/anxious-osaka-japan/" target="_blank"><img src="https://i.imgur.com/nR9PDat.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2023/07/24/anxious-osaka-japan/" target="_blank">anxious || osaka, japan</a>
         <span class="post-date">july 24, 2023</span>
       </article>
 
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2023/07/16/%ed%95%b4%ec%9a%b4%eb%8c%80-%ec%97%ac%eb%a6%bc-haeundae-summer/" target="_blank"><img src="https://i.imgur.com/9RnqL2q.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2023/07/16/%ed%95%b4%ec%9a%b4%eb%8c%80-%ec%97%ac%eb%a6%bc-haeundae-summer/" target="_blank">해운대 여림 || haeundae summer</a>
         <span class="post-date">july 16, 2023</span>
       </article>
 
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2023/07/08/hong-kong/" target="_blank"><img src="https://i.imgur.com/Ckvesc6.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2023/07/08/hong-kong/" target="_blank">hong kong</a>
         <span class="post-date">july 8, 2023</span>
       </article>
 
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2023/05/06/daylight-daylight-gallery-ssam/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2023/05/daylight-daylight_ssam-gallery-poster-korean.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2023/05/06/daylight-daylight-gallery-ssam/" target="_blank">daylight, daylight @ gallery ssam</a>
         <span class="post-date">may 6, 2023</span>
       </article>
 
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2023/05/06/%eb%b0%a4%ea%bd%83/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2023/05/image-6.png" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2023/05/06/%eb%b0%a4%ea%bd%83/" target="_blank">벚꽃</a>
         <span class="post-date">may 6, 2023</span>
       </article>
 
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2023/03/08/daylight-daylight/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2023/03/image-7-1.png" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2023/03/08/daylight-daylight/" target="_blank">daylight, daylight @ swll gallery</a>
         <span class="post-date">march 8, 2023</span>
       </article>
 
       <article class="post-card" data-page="3">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2022/05/10/what-lasts-lasts-exhibition-evening-_-disposable-camera-recap/" target="_blank"><img src="https://nowdeveloping.photos/wp-content/uploads/2022/05/000015-2-3.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2022/05/10/what-lasts-lasts-exhibition-evening-_-disposable-camera-recap/" target="_blank">what lasts, lasts: exhibition evening — disposable camera recap</a>
         <span class="post-date">may 10, 2022</span>
       </article>
 
       <!-- PAGE 4 -->
       <article class="post-card" data-page="4">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2022/04/09/what-lasts-lasts/" target="_blank"><img src="https://i.imgur.com/R1UdSbp.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2022/04/09/what-lasts-lasts/" target="_blank">what lasts, lasts.</a>
         <span class="post-date">april 9, 2022</span>
       </article>
@@ -346,43 +219,47 @@
       </article>
 
       <article class="post-card" data-page="4">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2021/04/04/%ec%a0%9c%ec%a3%bc-%eb%8f%99%ec%aa%bd-east-jeju/" target="_blank"><img src="https://live.staticflickr.com/65535/51002579969_e362129a1c_b.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2021/04/04/%ec%a0%9c%ec%a3%bc-%eb%8f%99%ec%aa%bd-east-jeju/" target="_blank">동 제주 || east jeju</a>
         <span class="post-date">april 4, 2021</span>
       </article>
 
       <article class="post-card" data-page="4">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2021/04/03/petals-with-frilled-edges-pale-ones-vivd-ones-petals-with-calyx-still-attached-they-had-all-clung-for-a-moment-to-the-bricks-of-the-wash-landing-but-in-no-time-at-all-they-were-caught-up-in-the-s/" target="_blank"><img src="https://live.staticflickr.com/65535/51084046033_567e42409d_b.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2021/04/03/petals-with-frilled-edges-pale-ones-vivd-ones-petals-with-calyx-still-attached-they-had-all-clung-for-a-moment-to-the-bricks-of-the-wash-landing-but-in-no-time-at-all-they-were-caught-up-in-the-s/" target="_blank">petals with frilled edges, pale ones, vivid ones, petals with calyx still attached.</a>
         <span class="post-date">april 3, 2021</span>
       </article>
 
       <article class="post-card" data-page="4">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2021/04/01/%ec%9e%90%ea%b0%88%ec%b9%98-jagalchi/" target="_blank"><img src="https://live.staticflickr.com/65535/50469902412_9a539b5eb6_b.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2021/04/01/%ec%9e%90%ea%b0%88%ec%b9%98-jagalchi/" target="_blank">자갈치 || jagalchi</a>
         <span class="post-date">april 1, 2021</span>
       </article>
 
       <article class="post-card" data-page="4">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2021/03/06/a-portrait-samantha-l-t/" target="_blank"><img src="https://live.staticflickr.com/65535/51008309413_2367a5d18d_b.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2021/03/06/a-portrait-samantha-l-t/" target="_blank">a portrait || samantha l.t.</a>
         <span class="post-date">march 6, 2021</span>
       </article>
 
       <article class="post-card" data-page="4">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2020/12/21/past-travels-northern-europe/" target="_blank"><img src="https://live.staticflickr.com/65535/49988248277_2b179993d7_b.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2020/12/21/past-travels-northern-europe/" target="_blank">past travels || northern europe</a>
         <span class="post-date">december 21, 2020</span>
       </article>
 
       <article class="post-card" data-page="4">
+        <a class="post-thumb" href="https://nowdeveloping.photos/2020/09/13/another-reality/" target="_blank"><img src="https://i.imgur.com/DrpK3cl.jpg" alt="" loading="lazy"></a>
         <a class="post-title" href="https://nowdeveloping.photos/2020/09/13/another-reality/" target="_blank">another reality</a>
         <span class="post-date">september 13, 2020</span>
       </article>
 
     </div>
-
     <div class="pagination">
       <button id="prev-btn" disabled onclick="changePage(-1)">← newer</button>
       <button id="next-btn" onclick="changePage(1)">older →</button>
     </div>
   </main>
-
   <footer class="site-footer">
     <span>dylan barnes</span>
     <div class="footer-links">
@@ -390,13 +267,10 @@
       <a href="https://www.instagram.com" target="_blank">instagram</a>
     </div>
   </footer>
-
 </div>
-
 <script>
   const TOTAL_PAGES = 4;
   let currentPage = 1;
-
   function showPage(page) {
     document.querySelectorAll('.post-card').forEach(card => {
       card.classList.remove('visible');
@@ -406,14 +280,8 @@
     document.getElementById('next-btn').disabled = page >= TOTAL_PAGES;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  function changePage(dir) {
-    currentPage += dir;
-    showPage(currentPage);
-  }
-
+  function changePage(dir) { currentPage += dir; showPage(currentPage); }
   showPage(currentPage);
 </script>
-
 </body>
 </html>
